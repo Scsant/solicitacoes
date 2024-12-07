@@ -30,6 +30,13 @@ ALLOWED_HOSTS = [
     '127.0.0.1',  # Para desenvolvimento local
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://seu-site.com",          # Substitua pelo domínio do seu site
+    "http://localhost:3000",        # Para testes locais
+    "http://127.0.0.1:5500",        # Por exemplo, se usar o Live Server
+]
+
+
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
