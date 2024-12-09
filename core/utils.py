@@ -1,7 +1,8 @@
 import pandas as pd
 from .models import Solicitation
 
-file_path = "D:/dataVisualizationPython/Painel de movimentacao de maquina.xlsx"
+
+file_path = "U:/Publica/Relatorios_Survey123/Solicitação de Prancha/Painel de movimentacao de maquina.xlsx"
 
 def import_survey_data(file_path):
     df = pd.read_excel(file_path)
