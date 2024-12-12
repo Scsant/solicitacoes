@@ -1,7 +1,11 @@
 import pandas as pd
 from .models import Solicitation
 
+
 file_path = "D:/dataVisualizationPython/Painel_Movimentacao_Maquinas.xlsx"
+
+
+
 
 def import_survey_data(file_path):
     df = pd.read_excel(file_path)
