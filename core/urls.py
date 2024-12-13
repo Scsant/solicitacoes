@@ -8,5 +8,5 @@ router.register(r'solicitations', SolicitationViewSet)  # Adiciona as rotas da A
 
 # Combinar as rotas do router com outras rotas
 urlpatterns = router.urls + [
-    path('import-excel/', ImportExcelView.as_view(), name='import-excel'),
+   path('import-excel/', ImportExcelView.as_view(), name='import-excel'),  # Remove o 'api/' extra
 ]

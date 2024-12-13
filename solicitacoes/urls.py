@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect  # Função para redirecionamento
 
 urlpatterns = [
     path('', lambda request: redirect('api/', permanent=True)),  # Redireciona para /api/

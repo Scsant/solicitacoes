@@ -25,6 +25,14 @@ SECRET_KEY = "django-insecure-fxgvz$qa=&k&5zpx4e41#k1sppcusn(^g4l#)mfai6y&z-6%cx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',  # Necessário para a interface no navegador
+    ],
+}
+
+
 ALLOWED_HOSTS = [
     'solicitacoes.onrender.com',
     '127.0.0.1',  # Para desenvolvimento local
@@ -92,12 +100,18 @@ WSGI_APPLICATION = "solicitacoes.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,  # Aumenta o tempo limite para 20 segundos
+        },
     }
 }
+
 
 
 # Password validation
