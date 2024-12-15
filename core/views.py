@@ -74,3 +74,64 @@ class ImportExcelView(APIView):
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework import status
+from .utils import import_internal_data  # Certifique-se de que a função existe no utils.py
+
+class ImportInternalView(APIView):
+    parser_classes = [MultiPartParser, FormParser]  # Permite o upload de arquivos
+
+    def post(self, request, *args, **kwargs):
+        file = request.FILES.get('file')  # Recebe o arquivo enviado no request
+        if not file:
+            return Response({'error': 'Nenhum arquivo enviado'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # Processa o arquivo usando a função import_internal_data do utils.py
+            import_internal_data(file)
+            return Response({'message': 'Dados importados com sucesso'}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+from rest_framework.viewsets import ModelViewSet
+from .serializers import CMSerializer, PranchasSerializer, TritremSerializer
+from .models import CM, Pranchas, Tritrem, EscalaDia, EscalaNoite
+
+
+class CMViewSet(ModelViewSet):
+    queryset = CM.objects.all()
+    serializer_class = CMSerializer
+
+
+class PranchasViewSet(ModelViewSet):
+    queryset = Pranchas.objects.all()
+    serializer_class = PranchasSerializer
+
+
+class TritremViewSet(ModelViewSet):
+    queryset = Tritrem.objects.all()
+    serializer_class = TritremSerializer
+
+
+
+
+from rest_framework.viewsets import ModelViewSet
+from .models import EscalaDia, EscalaNoite
+from .serializers import EscalaDiaSerializer, EscalaNoiteSerializer
+
+class EscalaDiaViewSet(ModelViewSet):
+    queryset = EscalaDia.objects.all()
+    serializer_class = EscalaDiaSerializer
+
+
+class EscalaNoiteViewSet(ModelViewSet):
+    queryset = EscalaNoite.objects.all()
+    serializer_class = EscalaNoiteSerializer
+
+
+
+

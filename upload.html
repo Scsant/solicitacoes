@@ -11,6 +11,13 @@
         <input type="file" name="file" accept=".xlsx">
         <button type="submit">Enviar</button>
     </form>
+    <h2>Upload das Planilhas Internas</h2>
+      <form action="http://127.0.0.1:8000/api/import-internal/" method="POST" enctype="multipart/form-data">
+          <label for="internal_file">Arquivo Interno:</label>
+          <input type="file" name="file" id="internal_file" required>
+          <button type="submit">Enviar Planilha Interna</button>
+      </form>
+
 </body>
 </html>
  

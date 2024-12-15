@@ -32,4 +32,64 @@ class Solicitation(models.Model):
     def __str__(self):
         return f"Solicitação {self.global_id} - {self.equipment}"
 
+from django.db import models
+
+class CM(models.Model):
+    quantidade = models.IntegerField()
+    btf = models.IntegerField() 
+
+# Modelo para a aba PRANCHAS
+class Pranchas(models.Model):
+    quan = models.IntegerField()
+    frota = models.IntegerField()
+    placa = models.CharField(max_length=50)
+    fabricante = models.CharField(max_length=100)
+    tipo = models.CharField(max_length=100)
+    especificacoes = models.TextField()
+    chassis = models.CharField(max_length=100)
+
+# Modelo para a aba TRITREM
+class Tritrem(models.Model):
+    btf_01 = models.IntegerField()
+    placa = models.CharField(max_length=50)
+    primeira_carreta = models.CharField(max_length=50)
+    segunda_carreta = models.CharField(max_length=50)
+    terceira_carreta = models.CharField(max_length=50)
+    fabricante_cm = models.CharField(max_length=100)
+    fabricante_conjunto = models.CharField(max_length=100)
+
+class EscalaDia(models.Model):
+    frota = models.CharField(max_length=255)  # FROTA
+    placa = models.CharField(max_length=255)  # PLACA
+    descricao = models.CharField(max_length=255)  # DESCRIÇÃO
+    matricula = models.BigIntegerField()  # MATRÍCULA
+    colaborador = models.CharField(max_length=255)  # COLABORADOR - DIA
+    workday = models.FloatField(null=True, blank=True)  # WORKDAY
+    admissao = models.DateField(null=True, blank=True)  # ADMISSÃO
+    ferias = models.CharField(max_length=255, null=True, blank=True)  # FÉRIAS
+    contato = models.CharField(max_length=255, null=True, blank=True)  # CONTATO
+    letra = models.CharField(max_length=10)  # LETRA
+    horario = models.CharField(max_length=50)  # HORÁRIO
+
+    def __str__(self):
+        return f"{self.colaborador} ({self.frota}) - DIA"
+
+
+class EscalaNoite(models.Model):
+    frota = models.CharField(max_length=255)  # FROTA
+    placa = models.CharField(max_length=255)  # PLACA
+    descricao = models.CharField(max_length=255)  # DESCRIÇÃO
+    matricula = models.BigIntegerField()  # MATRÍCULA
+    colaborador = models.CharField(max_length=255)  # COLABORADOR - NOITE
+    workday = models.FloatField(null=True, blank=True)  # WORKDAY
+    admissao = models.DateField(null=True, blank=True)  # ADMISSÃO
+    ferias = models.CharField(max_length=255, null=True, blank=True)  # FÉRIAS
+    contato = models.CharField(max_length=255, null=True, blank=True)  # CONTATO
+    letra = models.CharField(max_length=10)  # LETRA
+    horario = models.CharField(max_length=50)  # HORÁRIO
+
+    def __str__(self):
+        return f"{self.colaborador} ({self.frota}) - NOITE"
+
+
 
